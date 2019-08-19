@@ -4,7 +4,9 @@ Sub CopyToPPT()
 Dim rng As Range
 Dim PowerPointApp As Object
 Dim RowsPerSlide As Integer
-RowsPerSlide = 18
+
+'Change this row number per slide, not including header
+RowsPerSlide = 10
 
 'Copy Range from Excel
 Application.ScreenUpdating = False
@@ -122,13 +124,16 @@ With PowerPointApp.Windows(1).Presentation
         'ppPasteMetafilePicture
         'ppPastePNG
         'ppPasteShape
-        table_slide.Shapes.PasteSpecial ppPasteHTML
+        table_slide.Shapes.PasteSpecial ppPasteShape
         'DoEvents
         Application.Wait (Now + TimeValue("0:00:01"))
         Set table_shape = table_slide.Shapes(table_slide.Shapes.Count)
-        table_shape.Left = 0.5 * 72
-        table_shape.Top = 0.8 * 72
-        table_shape.Width = 9 * 72
+        With table_shape
+            .Width = 9 * 72
+            .Height = 6 * 72
+            .Left = 0.5 * 72
+            .Top = 0.8 * 72
+        End With
         
         If row_count > 2 Then
             rng.Rows(row_count).EntireRow.Delete

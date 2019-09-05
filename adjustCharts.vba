@@ -46,7 +46,7 @@ With PowerPointApp.Windows(1).Presentation
 
     For Each slide In .Slides
         For Each placehold In slide.Shapes.Placeholders
-            If placehold.Width > 8 * 72 And placehold.Height > 5 * 72 Then
+            If placehold.Width > 7.5 * 72 And placehold.Height > 5 * 72 Then
                 With placehold
                     .Height = 5.81 * 72
                     .Width = 8.07 * 72
